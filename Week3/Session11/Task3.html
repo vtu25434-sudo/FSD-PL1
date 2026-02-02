@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Commerce Filter UI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* FILTER SIDEBAR */
+        aside {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        aside h3 {
+            margin-top: 20px;
+        }
+
+        aside label {
+            display: block;
+            margin: 8px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .product h4 {
+            margin: 10px 0;
+        }
+
+        .rating {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>E-Commerce Platform</h1>
+    <p>Advanced Product Filtering</p>
+</header>
+
+<div class="container">
+
+
+    <aside>
+        <h2>Filters</h2>
+
+        
+        <h3>Price Range</h3>
+        <input type="range" id="priceFilter" min="500" max="5000" value="5000">
+        <p>Up to ₹<span id="priceValue">5000</span></p>
+
+        
+        <h3>Color</h3>
+        <label><input type="checkbox" class="color" value="Black"> Black</label>
+        <label><input type="checkbox" class="color" value="White"> White</label>
+        <label><input type="checkbox" class="color" value="Blue"> Blue</label>
+
+        
+        <h3>Brand</h3>
+        <label><input type="checkbox" class="brand" value="Apple"> Apple</label>
+        <label><input type="checkbox" class="brand" value="Samsung"> Samsung</label>
+        <label><input type="checkbox" class="brand" value="OnePlus"> OnePlus</label>
+
+    
+        <h3>Customer Rating</h3>
+        <label><input type="radio" name="rating" value="4"> 4★ & above</label>
+        <label><input type="radio" name="rating" value="3"> 3★ & above</label>
+        <label><input type="radio" name="rating" value="0" checked> All</label>
+    </aside>
+
+    
+    <main>
+        <div class="products" id="productList">
+
+            <div class="product" data-price="4500" data-color="Black" data-brand="Apple" data-rating="5">
+                <h4>iPhone</h4>
+                <p>Price: ₹4500</p>
+                <p>Color: Black</p>
+                <p>Brand: Apple</p>
+                <p class="rating">★★★★★</p>
+            </div>
+
+            <div class="product" data-price="3000" data-color="Blue" data-brand="Samsung" data-rating="4">
+                <h4>Samsung Galaxy</h4>
+                <p>Price: ₹3000</p>
+                <p>Color: Blue</p>
+                <p>Brand: Samsung</p>
+                <p class="rating">★★★★☆</p>
+            </div>
+
+            <div class="product" data-price="2500" data-color="White" data-brand="OnePlus" data-rating="3">
+                <h4>OnePlus Nord</h4>
+                <p>Price: ₹2500</p>
+                <p>Color: White</p>
+                <p>Brand: OnePlus</p>
+                <p class="rating">★★★☆☆</p>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    const priceFilter = document.getElementById("priceFilter");
+    const priceValue = document.getElementById("priceValue");
+    const products = document.querySelectorAll(".product");
+
+    priceFilter.addEventListener("input", filterProducts);
+    document.querySelectorAll("input").forEach(input =>
+        input.addEventListener("change", filterProducts)
+    );
+
+    function filterProducts() {
+        priceValue.textContent = priceFilter.value;
+
+        const selectedColors = [...document.querySelectorAll(".color:checked")].map(c => c.value);
+        const selectedBrands = [...document.querySelectorAll(".brand:checked")].map(b => b.value);
+        const selectedRating = document.querySelector('input[name="rating"]:checked').value;
+
+        products.forEach(product => {
+            const price = product.dataset.price;
+            const color = product.dataset.color;
+            const brand = product.dataset.brand;
+            const rating = product.dataset.rating;
+
+            const priceMatch = price <= priceFilter.value;
+            const colorMatch = selectedColors.length === 0 || selectedColors.includes(color);
+            const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(brand);
+            const ratingMatch = rating >= selectedRating;
+
+            product.style.display =
+                priceMatch && colorMatch && brandMatch && ratingMatch ? "block" : "none";
+        });
+    }
+</script>
+
+</body>
+</html>
