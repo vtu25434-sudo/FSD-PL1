@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In & Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 25px;
+            width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sign In Form -->
+    <form aria-labelledby="signin-heading">
+        <h2 id="signin-heading">Sign In</h2>
+
+        <label for="signin-email">Email</label>
+        <input
+            type="email"
+            id="signin-email"
+            name="signin-email"
+            placeholder="Enter your email"
+            aria-label="Email address"
+            required
+        >
+
+        <label for="signin-password">Password</label>
+        <input
+            type="password"
+            id="signin-password"
+            name="signin-password"
+            placeholder="Enter your password"
+            aria-label="Password"
+            required
+        >
+
+        <button type="submit" aria-label="Sign in to your account">
+            Sign In
+        </button>
+    </form>
+
+    <div class="divider">OR</div>
+
+    <!-- Sign Up Form -->
+    <form aria-labelledby="signup-heading">
+        <h2 id="signup-heading">Sign Up</h2>
+
+        <label for="signup-name">Full Name</label>
+        <input
+            type="text"
+            id="signup-name"
+            name="signup-name"
+            placeholder="Enter your full name"
+            aria-label="Full name"
+            required
+        >
+
+        <label for="signup-email">Email</label>
+        <input
+            type="email"
+            id="signup-email"
+            name="signup-email"
+            placeholder="Enter your email"
+            aria-label="Email address"
+            required
+        >
+
+        <label for="signup-password">Password</label>
+        <input
+            type="password"
+            id="signup-password"
+            name="signup-password"
+            placeholder="Create a password"
+            aria-label="Create password"
+            required
+        >
+
+        <button type="submit" aria-label="Create a new account">
+            Sign Up
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>
