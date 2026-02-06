@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Move Quadrants</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      color: white;
+      transition: background-color 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="info">Move the mouse</div>
+
+  <script>
+    const info = document.getElementById("info");
+
+    document.addEventListener("mousemove", (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      // Determine quadrant
+      if (x < width / 2 && y < height / 2) {
+        document.body.style.backgroundColor = "#2563eb"; // Top Left
+        info.textContent = "Top Left Quadrant";
+      } 
+      else if (x >= width / 2 && y < height / 2) {
+        document.body.style.backgroundColor = "#16a34a"; // Top Right
+        info.textContent = "Top Right Quadrant";
+      } 
+      else if (x < width / 2 && y >= height / 2) {
+        document.body.style.backgroundColor = "#dc2626"; // Bottom Left
+        info.textContent = "Bottom Left Quadrant";
+      } 
+      else {
+        document.body.style.backgroundColor = "#9333ea"; // Bottom Right
+        info.textContent = "Bottom Right Quadrant";
+      }
+    });
+  </script>
+</body>
+</html>
